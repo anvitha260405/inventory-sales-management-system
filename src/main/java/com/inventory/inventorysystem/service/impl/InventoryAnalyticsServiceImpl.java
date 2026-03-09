@@ -53,4 +53,25 @@ public class InventoryAnalyticsServiceImpl implements InventoryAnalyticsService 
     public List<StockMovement> getStockMovements() {
         return stockMovementRepository.findAll();
     }
+
+    @Override
+    public Double getInventoryTurnover() {
+        List<Product> products = productRepository.findAll();
+        List<com.inventory.inventorysystem.entity.SaleItem> saleItems = saleItemRepository.findAll();
+
+        int totalSoldQuantity = saleItems.stream()
+                .mapToInt(item -> item.getQuantity())
+                .sum();
+
+        int totalCurrentStock = products.stream()
+                .mapToInt(product -> product.getCurrentStock())
+                .sum();
+
+        if (totalCurrentStock == 0) {
+            return 0.0;
+        }
+
+        return (double) totalSoldQuantity / totalCurrentStock;
+    }
+
 }

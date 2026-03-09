@@ -32,4 +32,9 @@ public class InventoryAnalyticsController {
     public List<StockMovement> getStockMovements() {
         return analyticsService.getStockMovements();
     }
+
+    @GetMapping("/turnover")
+    public Double getInventoryTurnover() {
+        return analyticsService.getInventoryTurnover();
+    }
 }

@@ -13,4 +13,5 @@ public interface InventoryAnalyticsService {
 
     List<StockMovement> getStockMovements();
 
+    Double getInventoryTurnover();
 }

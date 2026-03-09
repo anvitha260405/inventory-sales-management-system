@@ -3,6 +3,7 @@ import API from '../services/api'
 
 function ProductsPage() {
   const [products, setProducts] = useState([])
+  const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(true)
 
   const [formData, setFormData] = useState({
@@ -50,7 +51,11 @@ function ProductsPage() {
     }
 
     try {
-      await API.post('/products', newProduct)
+      if (formData.id) {
+        await API.put(`/products/${formData.id}`, newProduct)
+      } else {
+        await API.post('/products', newProduct)
+      }
 
       setFormData({
         productName: '',
@@ -66,6 +71,16 @@ function ProductsPage() {
       console.error('Error adding product:', error)
       alert('Failed to add product. Check SKU uniqueness and input values.')
     }
+  }
+  const handleEdit = (product) => {
+    setFormData({
+      productName: product.productName,
+      sku: product.sku,
+      category: product.category,
+      unitPrice: product.unitPrice,
+      currentStock: product.currentStock,
+      reorderLevel: product.reorderLevel
+    })
   }
 
   const handleDelete = async (id) => {
@@ -176,6 +191,16 @@ function ProductsPage() {
           <div className="page-card">
             <h4 className="mb-3">Product List</h4>
 
+            <div className="mb-3">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Search product by name..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+
             {loading ? (
               <p>Loading products...</p>
             ) : products.length === 0 ? (
@@ -197,7 +222,11 @@ function ProductsPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {products.map((product) => (
+                    {products
+                       .filter((product) =>
+                         product.productName.toLowerCase().includes(search.toLowerCase())
+                       )
+                       .map((product) => (
                       <tr key={product.id}>
                         <td>{product.id}</td>
                         <td>{product.productName}</td>
@@ -214,6 +243,12 @@ function ProductsPage() {
                           )}
                         </td>
                         <td>
+                            <button
+                              className="btn btn-sm btn-outline-primary me-2"
+                              onClick={() => handleEdit(product)}
+                            >
+                              Edit
+                            </button>
                           <button
                             className="btn btn-sm btn-outline-danger"
                             onClick={() => handleDelete(product.id)}
