@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f7fb;
+}
+
+.sidebar {
+  width: 250px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #4F46E5, #7C3AED, #EC4899);
+  color: white;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.12);
+}
+
+.nav-link {
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 10px 12px;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.content-area {
+  background-color: #f5f7fb;
+}
+
+.page-card {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+.dashboard-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  height: 100%;
+  transition: transform 0.2s ease;
+  border-top: 5px solid #7C3AED;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+}
+
+.dashboard-card h5 {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.dashboard-card h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.warning-card {
+  border-left: 6px solid #f59e0b;
+}
+
+.danger-card {
+  border-left: 6px solid #ef4444;
+}
+
+.info-card {
+  border-left: 6px solid #3b82f6;
+}
