@@ -3,6 +3,7 @@ import DashboardPage from "./pages/DashboardPage"
 import ProductsPage from "./pages/ProductsPage"
 import SalesPage from "./pages/SalesPage"
 import AnalyticsPage from "./pages/AnalyticsPage"
+import AIChatbot from "./components/AIChatbot"
 
 function App() {
   return (
@@ -35,7 +36,9 @@ function App() {
             <Route path="/analytics" element={<AnalyticsPage />} />
           </Routes>
         </div>
+
       </div>
+      <AIChatbot />
     </Router>
   )
 }
