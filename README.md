@@ -82,6 +82,14 @@ The dashboard provides an overview of the inventory system including:
 - Stock movement summary
 - Inventory turnover indicator
 
+## AI-Powered Chatbot
+- AI-powered chatbot for inventory insights (rule-based NLP)
+- Allows users to ask questions like:
+    - "Which products need restocking?"
+    - "What are my dead stock items?"
+    - "Show stock movement details"
+- Uses internal APIs to fetch and display intelligent responses
+
 ---
 
 # System Workflow
